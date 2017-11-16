@@ -66,6 +66,10 @@ a {
   outline: none;
 }
 
+.inline-media {
+  max-width: 100%
+}
+
 md-sidenav {
   background-color: transparent;
   transition: margin-left 250ms ease-out;

@@ -5,13 +5,16 @@ import bttvEmotes from '../emotes/bttv';
 import addBitGifs from './add-bit-gifs';
 import twitchEmotes from '../emotes/twitch';
 import addEmotesAsImages from './add-emotes-as-images';
+import addInlineImages from './add-inline-images';
 
-export default function processMessage(msgObject, channel, emotesFromTwitch) {
+export default function processMessage(msgObject, channel, emotesFromTwitch, inlineMedia) {
+	const inlineImg = inlineMedia;
   const twitchE = emotesFromTwitch;
   const original = msgObject.message;
   let msg = msgObject.message;
   msg = escape(msg);
   msg = addLinks(msg);
+  msg = inlineImg? addInlineImages(msg) : msg;
   msg = addEmotesAsImages(msg, bttvEmotes(channel));
   msg = addEmotesAsImages(msg, ffzEmotes(channel));
   msg = twitchE? addEmotesAsImages(msg, twitchEmotes(original, twitchE)) : msg;

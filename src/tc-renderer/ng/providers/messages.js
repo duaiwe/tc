@@ -184,7 +184,8 @@ angular.module('tc').factory('messages', (
     if (!messageObject.at) messageObject.at = Date.now();
 
     const twitchEmotes = messageObject.user? messageObject.user.emotes : null;
-    const msg = processMessage(messageObject, channel, twitchEmotes);
+    const inlineMedia = settings.appearance.inlineMedia? settings.appearance.inlineMedia : false;
+    const msg = processMessage(messageObject, channel, twitchEmotes, inlineMedia);
 
     messageObject.message = msg;
     messages[channel].push(messageObject);
